@@ -1,0 +1,5 @@
+A few motherboards manage to emit beeps for an absent or faulty CPU, but the zombie-with-fans state is the most common scenario based on my experience.
+
+Sometimes USB or other devices can cause this to happen: unplugging all non-essential devices is a possible cure for a system that was working and suddenly appears dead like this.
+
+You can then single out the culprit device by elimination.
