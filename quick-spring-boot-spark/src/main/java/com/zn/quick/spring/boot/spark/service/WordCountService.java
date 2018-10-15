@@ -14,10 +14,6 @@ import scala.Tuple2;
 import java.util.Arrays;
 import java.util.Map;
 
-/**
- * @author zhaona
- * @create 2018/8/13 下午2:51
- */
 @Slf4j
 @Service
 public class WordCountService {

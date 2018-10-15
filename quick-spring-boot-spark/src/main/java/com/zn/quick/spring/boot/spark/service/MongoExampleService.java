@@ -21,10 +21,6 @@ import java.util.Map;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 
-/**
- * @author zhaona
- * @create 2018/8/13 下午3:55
- */
 @Slf4j
 @Service
 public class MongoExampleService {

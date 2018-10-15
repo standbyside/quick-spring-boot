@@ -19,10 +19,6 @@ import org.springframework.context.annotation.Bean;
 import java.util.Optional;
 
 
-/**
- * @author zhaona
- * @create 2018/8/13 上午11:40
- */
 @Configuration
 @ConditionalOnClass({ SparkConf.class, JavaSparkContext.class })
 @EnableConfigurationProperties(SparkProperties.class)

@@ -4,10 +4,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * @author zhaona
- * @create 2018/8/13 下午4:21
- */
 @Data
 public class Character implements Serializable {
 

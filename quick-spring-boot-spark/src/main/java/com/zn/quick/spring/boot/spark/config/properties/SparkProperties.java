@@ -5,10 +5,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Properties;
 
-/**
- * @author zhaona
- * @create 2018/8/13 上午11:53
- */
 @Data
 @ConfigurationProperties("spark")
 public class SparkProperties {
