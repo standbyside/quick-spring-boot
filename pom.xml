@@ -4,13 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zn</groupId>
+    <groupId>com.standbyside</groupId>
     <artifactId>quick-spring-boot</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>quick-spring-boot-spark</module>
         <module>quick-spring-boot-security</module>
+        <module>quick-spring-boot-rabbitmq</module>
     </modules>
 
     <parent>
