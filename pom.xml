@@ -11,7 +11,8 @@
     <modules>
         <module>quick-spring-boot-spark</module>
         <module>quick-spring-boot-security</module>
-        <module>quick-spring-boot-rabbitmq</module>
+        <module>quick-spring-boot-rabbitmq-consumer</module>
+        <module>quick-spring-boot-rabbitmq-producer</module>
     </modules>
 
     <parent>
@@ -43,6 +44,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>24.1-jre</version>
         </dependency>
 
         <dependency>
