@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import quick.spring.boot.rabbitmq.producer.DirectProducer;
 import quick.spring.boot.rabbitmq.producer.ExceptionProducer;
-import quick.spring.boot.rabbitmq.producer.FanoutExchangeProducer;
+import quick.spring.boot.rabbitmq.producer.FanoutProducer;
 import quick.spring.boot.rabbitmq.producer.TopicProducer;
 
 @RestController
@@ -18,7 +18,7 @@ public class TestController {
   @Autowired
   private TopicProducer topicProducer;
   @Autowired
-  private FanoutExchangeProducer fanoutProducer;
+  private FanoutProducer fanoutProducer;
   @Autowired
   private ExceptionProducer exceptionProducer;
 

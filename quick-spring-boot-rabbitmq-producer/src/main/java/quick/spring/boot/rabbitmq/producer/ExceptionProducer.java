@@ -1,5 +1,6 @@
 package quick.spring.boot.rabbitmq.producer;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -88,7 +89,7 @@ public class ExceptionProducer {
   private AmqpTemplate template;
 
   public void send() {
-    String message = "hello world";
+    String message = LocalDateTime.now().toString();
     System.out.println("producer send a exception message: " + message);
     template.convertAndSend(EXCEPTION_EXCHANGE_NAME, EXCEPTION_QUEUE_NAME, message);
   }

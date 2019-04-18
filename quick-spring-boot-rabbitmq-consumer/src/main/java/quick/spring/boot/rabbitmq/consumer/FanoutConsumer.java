@@ -1,19 +1,24 @@
 package quick.spring.boot.rabbitmq.consumer;
 
+import com.rabbitmq.client.Channel;
+import java.io.IOException;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
+
 /**
- * FanoutExchange（广播）模式消费者.
+ * Fanout模式消费者.
  */
 @Component
-public class FanoutExchangeConsumer {
+public class FanoutConsumer {
 
   /**
    * exchange.
@@ -75,17 +80,23 @@ public class FanoutExchangeConsumer {
   }
 
   @RabbitListener(queues = FANOUT_QUEUE1_NAME)
-  public void receive1(String message) {
+  public void receive1(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag)
+      throws IOException {
     System.out.println("consumer receive a fanout message 1: " + message);
+    channel.basicAck(tag, false);
   }
 
   @RabbitListener(queues = FANOUT_QUEUE2_NAME)
-  public void receive2(String message) {
+  public void receive2(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag)
+      throws IOException {
     System.out.println("consumer receive a fanout message 2: " + message);
+    channel.basicAck(tag, false);
   }
 
   @RabbitListener(queues = FANOUT_QUEUE3_NAME)
-  public void receive3(String message) {
+  public void receive3(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag)
+      throws IOException {
     System.out.println("consumer receive a fanout message 3: " + message);
+    channel.basicAck(tag, false);
   }
 }

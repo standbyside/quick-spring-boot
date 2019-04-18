@@ -1,16 +1,18 @@
 package quick.spring.boot.rabbitmq.producer;
 
+import java.time.LocalDateTime;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+
 /**
- * FanoutExchange（广播）模式生产者.
+ * Fanout模式生产者.
  */
 @Component
-public class FanoutExchangeProducer {
+public class FanoutProducer {
 
   /**
    * exchange.
@@ -29,7 +31,7 @@ public class FanoutExchangeProducer {
   private AmqpTemplate template;
 
   public void send() {
-    String message = "hello world";
+    String message = LocalDateTime.now().toString();
     System.out.println("producer send a fanout message: " + message);
     // 参数2将被忽略
     template.convertAndSend(FANOUT_EXCHANGE_NAME, "", message);

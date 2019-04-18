@@ -1,5 +1,6 @@
 package quick.spring.boot.rabbitmq.producer;
 
+import java.time.LocalDateTime;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
 
 /**
  * Topic模式生产者.
@@ -74,13 +76,13 @@ public class TopicProducer {
   private AmqpTemplate template;
 
   public void send1() {
-    String message = "hello world 1";
+    String message = LocalDateTime.now().toString() + " 1";
     System.out.println("producer send a topic message 1: " + message);
     template.convertAndSend(TOPIC_EXCHANGE_NAME, TOPIC_QUEUE1_NAME, message);
   }
 
   public void send2() {
-    String message = "hello world 2";
+    String message = LocalDateTime.now().toString() + " 2";
     System.out.println("producer send a topic message 2: " + message);
     template.convertAndSend(TOPIC_EXCHANGE_NAME, TOPIC_QUEUE2_NAME, message);
   }
