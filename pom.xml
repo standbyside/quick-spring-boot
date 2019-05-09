@@ -9,10 +9,11 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>quick-spring-boot-spark</module>
-        <module>quick-spring-boot-security</module>
-        <module>quick-spring-boot-rabbitmq-consumer</module>
-        <module>quick-spring-boot-rabbitmq-producer</module>
+        <module>quick-boot-spark</module>
+        <module>quick-boot-security</module>
+        <module>quick-boot-rabbitmq-consumer</module>
+        <module>quick-boot-rabbitmq-producer</module>
+        <module>quick-boot-easypoi</module>
     </modules>
 
     <parent>
