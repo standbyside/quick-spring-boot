@@ -16,6 +16,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import quick.boot.easypoi.entity.Department;
 import quick.boot.easypoi.entity.Student;
 import quick.boot.easypoi.entity.Teacher;
 import quick.boot.easypoi.utils.DataUtils;
@@ -33,7 +34,7 @@ public class TestController {
   public ResponseEntity test1(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
-    List<Student> students = DataUtils.getStudentList();
+    List<Student> students = DataUtils.getStudents();
 
     Workbook wb = ExcelExportUtil.exportExcel(
         new ExportParams(null, "学生信息列表"), Student.class, students
@@ -45,14 +46,14 @@ public class TestController {
   }
 
   /**
-   * 多sheet页，简单表头.
+   * 多sheet页.
    */
   @GetMapping("test2")
   public ResponseEntity test2(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
-    List<Student> students = DataUtils.getStudentList();
-    List<Teacher> teachers = DataUtils.getTeacherList();
+    List<Student> students = DataUtils.getStudents();
+    List<Teacher> teachers = DataUtils.getTeachers();
 
 
     // 创建参数对象（学生）
@@ -84,6 +85,24 @@ public class TestController {
     Workbook wb = ExcelExportUtil.exportExcel(sheets, ExcelType.HSSF);
     String fileName = "test2_" + LocalDate.now().toString() + ".xlsx";
 
+    ExcelUtils.writeExcel(request, response, wb, fileName);
+
+    return null;
+  }
+
+  /**
+   * 合并表头.
+   */
+  @GetMapping("test3")
+  public ResponseEntity test3(HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+
+    List<Department> departments = DataUtils.getDeparments();
+
+    Workbook wb = ExcelExportUtil.exportExcel(
+        new ExportParams(null, "部门信息列表"), Department.class, departments
+    );
+    String fileName = "test3_" + LocalDate.now().toString() + ".xlsx";
     ExcelUtils.writeExcel(request, response, wb, fileName);
 
     return null;
