@@ -19,14 +19,6 @@ public class DirectProducer {
    */
   private static final String DIRECT_QUEUE_NAME = "test.direct.queue";
 
-  /**
-   * 初始化queue.
-   */
-  @Bean
-  public Queue directQueue() {
-    return new Queue(DIRECT_QUEUE_NAME);
-  }
-
   @Autowired
   private AmqpTemplate template;
 

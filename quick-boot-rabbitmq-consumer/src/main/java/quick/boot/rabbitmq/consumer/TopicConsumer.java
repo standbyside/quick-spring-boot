@@ -2,9 +2,14 @@ package quick.boot.rabbitmq.consumer;
 
 import com.rabbitmq.client.Channel;
 import java.io.IOException;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
@@ -17,11 +22,24 @@ import org.springframework.stereotype.Component;
 public class TopicConsumer {
 
   /**
+   * exchange.
+   */
+  private static final String TOPIC_EXCHANGE_NAME = "spring.rabbit.topic";
+  
+  /**
    * queue.
    */
   private static final String TOPIC_QUEUE1_NAME = "test.topic.queue1";
   private static final String TOPIC_QUEUE2_NAME = "test.topic.queue2";
   private static final String TOPIC_QUEUE3_NAME = "test.topic.queue3";
+
+  /**
+   * 初始化exchange.
+   */
+  @Bean(name = "topicExchange")
+  public TopicExchange topicExchange() {
+    return new TopicExchange(TOPIC_EXCHANGE_NAME);
+  }
 
   /**
    * 初始化queue1.
@@ -45,6 +63,25 @@ public class TopicConsumer {
   @Bean
   public Queue topicQueue3() {
     return new Queue(TOPIC_QUEUE3_NAME);
+  }
+
+  /**
+   * 绑定1.
+   */
+  @Bean
+  Binding bindingTopicMessage1(@Qualifier("topicQueue1") Queue queue,
+                               @Qualifier("topicExchange") TopicExchange exchange) {
+    return BindingBuilder.bind(queue).to(exchange).with("test.topic.queue1");
+  }
+
+  /**
+   * 绑定2.
+   */
+  @Bean
+  Binding bindingTopicMessage2(@Qualifier("topicQueue2") Queue queue,
+                               @Qualifier("topicExchange") TopicExchange exchange) {
+    // *表示一个词，#表示0个或多个词
+    return BindingBuilder.bind(queue).to(exchange).with("test.topic.*");
   }
 
   /**

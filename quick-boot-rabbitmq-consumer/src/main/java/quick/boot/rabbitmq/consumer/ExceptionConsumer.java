@@ -1,14 +1,19 @@
 package quick.boot.rabbitmq.consumer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
 
@@ -92,8 +97,10 @@ public class ExceptionConsumer {
    * 监听器监听指定的Queue.
    */
   @RabbitListener(queues = EXCEPTION_QUEUE_NAME)
-  public void receive(String message) throws Exception {
+  public void receive(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag)
+      throws Exception {
     System.out.println("consumer receive a exception message : " + message);
+    channel.basicNack(tag, false, false);
     throw new Exception("count = " + (count++));
   }
 
@@ -101,7 +108,9 @@ public class ExceptionConsumer {
    * 监听器监听指定的DLQueue.
    */
   @RabbitListener(queues = EXCEPTION_QUEUE_NAME_DL)
-  public void receiveDL(String message) {
+  public void receiveDL(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long tag)
+      throws IOException {
     System.out.println("consumer receive a exception message dl: " + message);
+    channel.basicAck(tag, false);
   }
 }
