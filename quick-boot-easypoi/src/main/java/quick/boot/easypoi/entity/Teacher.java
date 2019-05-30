@@ -13,10 +13,10 @@ import quick.boot.easypoi.enums.Gender;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Teacher {
 
-  @Excel(name = "学号", orderNum = "1")
-  private Integer studentId;
+  @Excel(name = "工号", orderNum = "1")
+  private Integer workId;
 
   @Excel(name = "姓名", orderNum = "2")
   private String name;
@@ -24,10 +24,9 @@ public class Student {
   @Excel(name = "性别", orderNum = "3", replace = {"男_MALE", "女_FEMALE"})
   private Gender gender;
 
-  @Excel(name = "所属班级", orderNum = "4")
-  private String classes;
+  @Excel(name = "教授课程", orderNum = "4")
+  private String subject;
 
   @Excel(name = "创建时间", orderNum = "5", width = 15, format = "yyyyMMdd")
   private LocalDate createTime;
-
 }
