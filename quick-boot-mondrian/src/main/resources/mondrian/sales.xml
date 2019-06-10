@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema name="db">
+    <!--创建一个数据立方体-->
+    <Cube name="Sales" visible="true" cache="true" enabled="true">
+        <!--事实表 使用name指定表名-->
+        <Table name="sale"/>
+        <!--维度1 foreignKey 事实表中的外键id name维度名称  -->
+        <Dimension visible="true" foreignKey="cusId" highCardinality="false" name="cusGender">
+            <!--维度细分的层次 allMemberName 所有维度的名称 primaryKey维度表的主键 hasAll是否包含所有维度-->
+            <Hierarchy visible="true" hasAll="true" allMemberName="allGender" primaryKey="cusId">
+                <!---->
+                <Table name="customer"/>
+                <!--定义层次的水平，column 维度表的那一列 .... -->
+                <Level name="gender" visible="true" column="gender" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never"/>
+            </Hierarchy>
+        </Dimension>
+        <Dimension visible="true" foreignKey="proId" highCardinality="false" name="proType">
+            <!--primaryKey 维度主键  primaryKeyTable维度主键对应的表-->
+            <Hierarchy visible="true" hasAll="true" allMemberName="allPro" primaryKey="proId" primaryKeyTable="product">
+                <!--两张表外键关系-->
+                <Join leftKey="proTypeId" rightKey="proTypeId">
+                    <Table name="product"/>
+                    <Table name="producttype"/>
+                </Join>
+                <!--具体的维度 -->
+                <Level name="proTypeId" visible="true" table="producttype" column="protypeid" nameColumn="protypename" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never"/>
+                <Level name="proId" visible="true" table="product" column="proId" nameColumn="proName" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never"/>
+            </Hierarchy>
+        </Dimension>
+        <!--事实表 aggregator 统计时使用的函数 sum累加 formatString 格式化字符串，可以格式化类似Money、时间之类的格式-->
+        <Measure name="numb" column="number" datatype="Numeric" aggregator="sum"></Measure>
+        <Measure name="totalSale" formatString="￥#,##0.00" aggregator="sum">
+            <!--sql 片段-->
+            <MeasureExpression>
+                <SQL dialect="generic">
+                    <![CDATA[(unitPrice*number)]]>
+                </SQL>
+            </MeasureExpression>
+        </Measure>
+        <CalculatedMember name="averPri" dimension="Measures">
+            <Formula>
+                <![CDATA[[Measures].[totalSale] / [Measures].[numb]]]>
+            </Formula>
+            <CalculatedMemberProperty name="FORMAT_STRING" value="￥#,##0.00"/>
+        </CalculatedMember>
+    </Cube>
+</Schema>
