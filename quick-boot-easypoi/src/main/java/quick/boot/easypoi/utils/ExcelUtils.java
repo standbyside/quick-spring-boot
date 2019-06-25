@@ -1,7 +1,7 @@
 package quick.boot.easypoi.utils;
 
-
 import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
@@ -40,5 +40,14 @@ public class ExcelUtils {
     bos.flush();
     bos.close();
     os.close();
+  }
+
+  /**
+   * 写出Excel到本地.
+   */
+  public static void writeLocal(Workbook wb, String fileName) throws IOException {
+    FileOutputStream fos = new FileOutputStream("/Users/zn/Downloads/" + fileName);
+    wb.write(fos);
+    fos.close();
   }
 }

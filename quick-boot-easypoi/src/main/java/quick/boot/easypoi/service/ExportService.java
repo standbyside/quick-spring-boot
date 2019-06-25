@@ -1,60 +1,45 @@
-package quick.boot.easypoi.controller;
+package quick.boot.easypoi.service;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
-import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
-import com.google.common.collect.Lists;
-import java.io.IOException;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
+
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import com.google.common.collect.Lists;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import quick.boot.easypoi.entity.Department;
 import quick.boot.easypoi.entity.Student;
 import quick.boot.easypoi.entity.Teacher;
 import quick.boot.easypoi.utils.DataUtils;
-import quick.boot.easypoi.utils.ExcelUtils;
 
-
-@Slf4j
-@RestController
-public class TestController {
+@Service
+public class ExportService {
 
   /**
    * 单sheet页，简单表头.
    */
-  @GetMapping("test1")
-  public ResponseEntity test1(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
+  public Workbook test1() {
 
     List<Student> students = DataUtils.getStudents();
 
-    Workbook wb = ExcelExportUtil.exportExcel(
+    return ExcelExportUtil.exportExcel(
         new ExportParams(null, "学生信息列表"), Student.class, students
     );
-    String fileName = "test1_" + LocalDate.now().toString() + ".xlsx";
-    ExcelUtils.writeExcel(request, response, wb, fileName);
-
-    return null;
   }
 
   /**
    * 多sheet页.
    */
-  @GetMapping("test2")
-  public ResponseEntity test2(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
+  public Workbook test2() {
 
     List<Student> students = DataUtils.getStudents();
     List<Teacher> teachers = DataUtils.getTeachers();
-
 
     // 创建参数对象（学生）
     ExportParams studentExportParam = new ExportParams();
@@ -82,29 +67,35 @@ public class TestController {
         studentExportMap, teacherExportMap
     );
 
-    Workbook wb = ExcelExportUtil.exportExcel(sheets, ExcelType.HSSF);
-    String fileName = "test2_" + LocalDate.now().toString() + ".xlsx";
-
-    ExcelUtils.writeExcel(request, response, wb, fileName);
-
-    return null;
+    return ExcelExportUtil.exportExcel(sheets, ExcelType.HSSF);
   }
 
   /**
    * 合并表头.
    */
-  @GetMapping("test3")
-  public ResponseEntity test3(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
+  public Workbook test3() {
 
-    List<Department> departments = DataUtils.getDeparments();
+    List<Department> departments = DataUtils.getDepartments();
 
-    Workbook wb = ExcelExportUtil.exportExcel(
+    return ExcelExportUtil.exportExcel(
         new ExportParams(null, "部门信息列表"), Department.class, departments
     );
-    String fileName = "test3_" + LocalDate.now().toString() + ".xlsx";
-    ExcelUtils.writeExcel(request, response, wb, fileName);
+  }
 
-    return null;
+  /**
+   * 模版导出.
+   */
+  public Workbook test4() {
+    Map<String,Object> map = new HashMap<>(16);
+    map.put("recordTime", LocalDate.now());
+    map.put("teachers", DataUtils.getTeachers());
+    map.put("students", DataUtils.getStudents());
+    map.put("departments", DataUtils.getDepartments());
+
+    // 标明Excel模版和Sheet页
+    TemplateExportParams params = new TemplateExportParams(
+        "templates/school-person-records-template.xls", 0, 1);
+
+    return ExcelExportUtil.exportExcel(params, map);
   }
 }

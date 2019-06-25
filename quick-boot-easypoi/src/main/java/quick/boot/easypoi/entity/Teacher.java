@@ -21,12 +21,15 @@ public class Teacher {
   @Excel(name = "姓名", orderNum = "2")
   private String name;
 
-  @Excel(name = "性别", orderNum = "3", replace = {"男_MALE", "女_FEMALE"})
+  @Excel(name = "年龄", orderNum = "3")
+  private Integer age;
+
+  @Excel(name = "性别", orderNum = "4", replace = {"男_MALE", "女_FEMALE"})
   private Gender gender;
 
-  @Excel(name = "教授课程", orderNum = "4")
+  @Excel(name = "教授课程", orderNum = "5")
   private String subject;
 
-  @Excel(name = "创建时间", orderNum = "5", width = 15, format = "yyyyMMdd")
+  @Excel(name = "入职时间", orderNum = "6", width = 15, format = "yyyyMMdd")
   private LocalDate createTime;
 }

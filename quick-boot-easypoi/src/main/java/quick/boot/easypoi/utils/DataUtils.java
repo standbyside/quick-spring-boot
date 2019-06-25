@@ -18,27 +18,27 @@ public class DataUtils {
 
   public static List<Student> getStudents() {
     return Lists.newArrayList(
-        Student.builder().studentId(1).name("1号学生").gender(Gender.MALE).classes("一年一班")
+        Student.builder().studentId(1).name("1号学生").age(10).gender(Gender.MALE).classes("一年一班")
             .createTime(LocalDate.of(2019, 1, 1)).build(),
-        Student.builder().studentId(2).name("2号学生").gender(Gender.FEMALE).classes("一年一班")
+        Student.builder().studentId(2).name("2号学生").age(11).gender(Gender.FEMALE).classes("一年一班")
             .createTime(LocalDate.of(2019, 1, 1)).build(),
-        Student.builder().studentId(3).name("3号学生").gender(Gender.MALE).classes("一年二班")
+        Student.builder().studentId(3).name("3号学生").age(12).gender(Gender.MALE).classes("一年二班")
             .createTime(LocalDate.of(2019, 1, 1)).build()
     );
   }
 
   public static List<Teacher> getTeachers() {
     return Lists.newArrayList(
-        Teacher.builder().workId(1).name("1号教师").gender(Gender.MALE).subject("语文")
+        Teacher.builder().workId(1).name("1号教师").age(25).gender(Gender.MALE).subject("语文")
             .createTime(LocalDate.of(2019, 1, 1)).build(),
-        Teacher.builder().workId(2).name("2号教师").gender(Gender.FEMALE).subject("数学")
+        Teacher.builder().workId(2).name("2号教师").age(26).gender(Gender.FEMALE).subject("数学")
             .createTime(LocalDate.of(2019, 1, 1)).build(),
-        Teacher.builder().workId(3).name("3号教师").gender(Gender.MALE).subject("英语")
+        Teacher.builder().workId(3).name("3号教师").age(27).gender(Gender.MALE).subject("英语")
             .createTime(LocalDate.of(2019, 1, 1)).build()
     );
   }
 
-  public static List<Department> getDeparments() {
+  public static List<Department> getDepartments() {
     return Lists.newArrayList(
         Department.builder()
             .id(1).name("1号部门")
