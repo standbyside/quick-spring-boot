@@ -87,10 +87,10 @@ public class ExportService {
    */
   public Workbook test4() {
     Map<String,Object> map = new HashMap<>(16);
+
     map.put("recordTime", LocalDate.now());
     map.put("teachers", DataUtils.getTeachers());
     map.put("students", DataUtils.getStudents());
-    map.put("departments", DataUtils.getDepartments());
 
     // 标明Excel模版和Sheet页
     TemplateExportParams params = new TemplateExportParams(

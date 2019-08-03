@@ -15,6 +15,7 @@
         <module>quick-boot-rabbitmq-producer</module>
         <module>quick-boot-easypoi</module>
         <module>quick-boot-mondrian</module>
+        <module>quick-boot-validation</module>
     </modules>
 
     <parent>
