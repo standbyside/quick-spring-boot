@@ -9,23 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>quick-boot-mondrian</artifactId>
-
-    <repositories>
-        <repository>
-            <id>pentaho-repo</id>
-            <name>pentaho repository</name>
-            <url>http://repository.pentaho.org/artifactory/pentaho</url>
-        </repository>
-    </repositories>
+    <artifactId>quick-boot-webflux</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>pentaho</groupId>
-            <artifactId>mondrian</artifactId>
-            <version>4.7</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
-
 </project>
