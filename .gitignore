@@ -1,2 +1,10 @@
 .idea/
+out/
 *.iml
+quick-boot-easypoi/target/
+quick-boot-validation/target/
+quick-boot-rabbitmq-consumer/target/
+quick-boot-rabbitmq-producer/target/
+quick-boot-security/target/
+quick-boot-spark/target/
+quick-boot-webflux/target/
