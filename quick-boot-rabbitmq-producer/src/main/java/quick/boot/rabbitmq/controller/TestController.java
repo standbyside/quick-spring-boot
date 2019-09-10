@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import quick.boot.rabbitmq.producer.DirectProducer;
-import quick.boot.rabbitmq.producer.ExceptionProducer;
-import quick.boot.rabbitmq.producer.FanoutProducer;
-import quick.boot.rabbitmq.producer.TopicProducer;
+import quick.boot.rabbitmq.producer.*;
 
 @RestController
 @RequestMapping("/test")
@@ -21,6 +18,8 @@ public class TestController {
   private FanoutProducer fanoutProducer;
   @Autowired
   private ExceptionProducer exceptionProducer;
+  @Autowired
+  private DelayProducer delayProducer;
 
   @GetMapping("/direct")
   public Object testDirect() {
@@ -50,5 +49,11 @@ public class TestController {
   public Object testException() {
     exceptionProducer.send();
     return "test exception success";
+  }
+
+  @GetMapping("/delay")
+  public Object testDelay() {
+    delayProducer.send();
+    return "test delay success";
   }
 }
