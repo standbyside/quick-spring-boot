@@ -8,3 +8,4 @@ quick-boot-rabbitmq-producer/target/
 quick-boot-security/target/
 quick-boot-spark/target/
 quick-boot-webflux/target/
+quick-boot-mybatis/target/

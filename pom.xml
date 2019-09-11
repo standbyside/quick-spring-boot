@@ -16,6 +16,7 @@
         <module>quick-boot-easypoi</module>
         <module>quick-boot-validation</module>
         <module>quick-boot-webflux</module>
+        <module>quick-boot-mybatis</module>
     </modules>
 
     <parent>
@@ -59,6 +60,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.1</version>
         </dependency>
 
     </dependencies>
