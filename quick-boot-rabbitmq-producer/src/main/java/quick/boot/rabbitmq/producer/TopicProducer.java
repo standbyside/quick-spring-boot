@@ -28,13 +28,13 @@ public class TopicProducer {
   private AmqpTemplate template;
 
   public void send1() {
-    String message = LocalDateTime.now().toString() + " 1";
+    String message = LocalDateTime.now().toString();
     System.out.println("producer send a topic message 1: " + message);
     template.convertAndSend(TOPIC_EXCHANGE_NAME, TOPIC_QUEUE1_NAME, message);
   }
 
   public void send2() {
-    String message = LocalDateTime.now().toString() + " 2";
+    String message = LocalDateTime.now().toString();
     System.out.println("producer send a topic message 2: " + message);
     template.convertAndSend(TOPIC_EXCHANGE_NAME, TOPIC_QUEUE2_NAME, message);
   }

@@ -43,7 +43,7 @@ public class FanoutConsumer {
   /**
    * 初始化queue1.
    */
-  @Bean(name = "fanoutQueue1")
+  @Bean
   public Queue fanoutQueue1() {
     return new Queue(FANOUT_QUEUE1_NAME);
   }
@@ -51,7 +51,7 @@ public class FanoutConsumer {
   /**
    * 初始化queue2.
    */
-  @Bean(name = "fanoutQueue2")
+  @Bean
   public Queue fanoutQueue2() {
     return new Queue(FANOUT_QUEUE2_NAME);
   }
@@ -59,7 +59,7 @@ public class FanoutConsumer {
   /**
    * 初始化queue3.
    */
-  @Bean(name = "fanoutQueue3")
+  @Bean
   public Queue fanoutQueue3() {
     return new Queue(FANOUT_QUEUE3_NAME);
   }

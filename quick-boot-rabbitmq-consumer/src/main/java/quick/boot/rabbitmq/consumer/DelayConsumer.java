@@ -38,7 +38,7 @@ public class DelayConsumer {
     /**
      * 初始化exchange.
      */
-    @Bean(name = "delayExchange")
+    @Bean
     public TopicExchange delayExchange() {
         return new TopicExchange(DELAY_EXCHANGE_NAME);
     }
@@ -70,7 +70,7 @@ public class DelayConsumer {
     /**
      * 初始化exchangeDL.
      */
-    @Bean(name = "delayExchangeDL")
+    @Bean
     public TopicExchange delayExchangeDL() {
         return new TopicExchange(DELAY_EXCHANGE_NAME_DL);
     }
@@ -78,7 +78,7 @@ public class DelayConsumer {
     /**
      * 初始化queueDL.
      */
-    @Bean(name = "delayQueueDL")
+    @Bean
     public Queue delayQueueDL() {
         return new Queue(DELAY_QUEUE_NAME_DL);
     }

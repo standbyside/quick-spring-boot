@@ -36,7 +36,7 @@ public class TopicConsumer {
   /**
    * 初始化exchange.
    */
-  @Bean(name = "topicExchange")
+  @Bean
   public TopicExchange topicExchange() {
     return new TopicExchange(TOPIC_EXCHANGE_NAME);
   }

@@ -20,6 +20,8 @@ public class TestController {
   private ExceptionProducer exceptionProducer;
   @Autowired
   private DelayProducer delayProducer;
+  @Autowired
+  private NonexistentProducer nonexistentProducer;
 
   @GetMapping("/direct")
   public Object testDirect() {
@@ -55,5 +57,23 @@ public class TestController {
   public Object testDelay() {
     delayProducer.send();
     return "test delay success";
+  }
+
+  @GetMapping("/nonexistant1")
+  public Object testNonexistant1() {
+    nonexistentProducer.send1();
+    return "test nonexistant 1 success";
+  }
+
+  @GetMapping("/nonexistant2")
+  public Object testNonexistant2() {
+    nonexistentProducer.send2();
+    return "test nonexistant 1 success";
+  }
+
+  @GetMapping("/nonexistant3")
+  public Object testNonexistant3() {
+    nonexistentProducer.send3();
+    return "test nonexistant 3 success";
   }
 }

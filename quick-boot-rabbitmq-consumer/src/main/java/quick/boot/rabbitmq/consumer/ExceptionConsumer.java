@@ -38,7 +38,7 @@ public class ExceptionConsumer {
   /**
    * 初始化exchange.
    */
-  @Bean(name = "exceptionExchange")
+  @Bean
   public TopicExchange exceptionExchange() {
     return new TopicExchange(EXCEPTION_EXCHANGE_NAME);
   }
@@ -46,7 +46,7 @@ public class ExceptionConsumer {
   /**
    * 初始化queue.
    */
-  @Bean(name = "exceptionQueue")
+  @Bean
   public Queue exceptionQueue() {
     Map<String, Object> args = new HashMap<>(16);
     args.put("x-dead-letter-exchange", EXCEPTION_EXCHANGE_NAME_DL);
@@ -66,7 +66,7 @@ public class ExceptionConsumer {
   /**
    * 初始化exchangeDL.
    */
-  @Bean(name = "exceptionExchangeDL")
+  @Bean
   public TopicExchange exceptionExchangeDL() {
     return new TopicExchange(EXCEPTION_EXCHANGE_NAME_DL);
   }
@@ -74,7 +74,7 @@ public class ExceptionConsumer {
   /**
    * 初始化queueDL.
    */
-  @Bean(name = "exceptionQueueDL")
+  @Bean
   public Queue exceptionQueueDL() {
     return new Queue(EXCEPTION_QUEUE_NAME_DL);
   }

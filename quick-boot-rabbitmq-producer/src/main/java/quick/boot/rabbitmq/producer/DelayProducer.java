@@ -28,7 +28,7 @@ public class DelayProducer {
 
     public void send() {
         String message = LocalDateTime.now().toString();
-        System.out.println("producer send a delay message : " + message);
+        System.out.println("producer send a delay message: " + message);
         // 给延迟队列发送消息
         template.convertAndSend(DELAY_EXCHANGE_NAME, DELAY_QUEUE_NAME, message, messagePostProcessor -> {
             // 给消息设置延迟毫秒值
