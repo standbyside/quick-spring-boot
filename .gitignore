@@ -9,3 +9,4 @@ quick-boot-security/target/
 quick-boot-spark/target/
 quick-boot-webflux/target/
 quick-boot-mybatis/target/
+quick-boot-sharding-jdbc/target/
