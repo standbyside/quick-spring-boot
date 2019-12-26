@@ -18,6 +18,8 @@
         <module>quick-boot-webflux</module>
         <module>quick-boot-mybatis</module>
         <module>quick-boot-sharding-jdbc</module>
+        <module>quick-boot-quartz</module>
+        <module>quick-boot-drools</module>
     </modules>
 
     <parent>
