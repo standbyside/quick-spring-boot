@@ -20,6 +20,7 @@
         <module>quick-boot-sharding-jdbc</module>
         <module>quick-boot-quartz</module>
         <module>quick-boot-drools</module>
+        <module>quick-boot-rocketmq-producer</module>
     </modules>
 
     <parent>
